@@ -1,0 +1,4 @@
+- [2026-03-08] Fixed Android release build failure by adding ProGuard keep rules for Google Play Core.
+- [2026-03-08] Fixed border rendering assertion in ChatPage empty state widget.
+- [2026-03-08] Implemented Conversational AI capabilities, adding intent classification, context building, and database schema updates for monthly income.
+- [2026-03-06] Implemented complete Indian Fintech Design System v2 across all application layers (Profile, Dashboard, History, Chat, Onboarding) utilizing GoogleFonts and Lottie.

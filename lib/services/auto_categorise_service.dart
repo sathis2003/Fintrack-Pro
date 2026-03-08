@@ -1,0 +1,170 @@
+class AutoCategoriseService {
+  static String categorise(String merchantOrDescription) {
+    final text = merchantOrDescription.toLowerCase().trim();
+    if (_m(text, [
+      'swiggy',
+      'zomato',
+      'blinkit',
+      'zepto',
+      'dominos',
+      'pizza',
+      'burger',
+      'kfc',
+      'mcdonalds',
+      'subway',
+      'starbucks',
+      'cafe',
+      'restaurant',
+      'dhaba',
+      'food',
+      'grocery',
+      'bigbasket',
+      'dmart',
+      'reliance smart',
+      'milk',
+      'vegetables'
+    ])) return 'Food';
+    if (_m(text, [
+      'uber',
+      'ola',
+      'rapido',
+      'metro',
+      'bus',
+      'train',
+      'irctc',
+      'petrol',
+      'fuel',
+      'diesel',
+      'parking',
+      'toll',
+      'auto',
+      'cab',
+      'taxi',
+      'namma yatri',
+      'indigo',
+      'air india',
+      'spicejet',
+      'flight',
+      'makemytrip',
+      'ixigo'
+    ])) return 'Transport';
+    if (_m(text, [
+      'amazon',
+      'flipkart',
+      'myntra',
+      'ajio',
+      'meesho',
+      'nykaa',
+      'h&m',
+      'zara',
+      'westside',
+      'pantaloons',
+      'decathlon',
+      'ikea',
+      'croma',
+      'reliance digital',
+      'vijay sales',
+      'clothing',
+      'shoes',
+      'electronics',
+      'gadget',
+      'mobile',
+      'laptop'
+    ])) return 'Shopping';
+    if (_m(text, [
+      'airtel',
+      'jio',
+      'vi ',
+      'bsnl',
+      'electricity',
+      'water bill',
+      'gas',
+      'broadband',
+      'wifi',
+      'dth',
+      'tata play',
+      'recharge',
+      'postpaid',
+      'maintenance',
+      'rent',
+      'emi',
+      'loan',
+      'insurance',
+      'lic',
+      'premium'
+    ])) return 'Bills';
+    if (_m(text, [
+      'pharmacy',
+      'medical',
+      'hospital',
+      'clinic',
+      'doctor',
+      'apollo',
+      'medplus',
+      'netmeds',
+      '1mg',
+      'pharmeasy',
+      'lab',
+      'medicine',
+      'health',
+      'gym',
+      'cult fit',
+      'yoga',
+      'dentist'
+    ])) return 'Health';
+    if (_m(text, [
+      'netflix',
+      'hotstar',
+      'amazon prime',
+      'sony liv',
+      'zee5',
+      'jiocinema',
+      'spotify',
+      'apple music',
+      'youtube premium',
+      'movie',
+      'pvr',
+      'inox',
+      'bookmyshow',
+      'concert',
+      'game',
+      'steam'
+    ])) return 'Entertainment';
+    if (_m(text, [
+      'udemy',
+      'coursera',
+      'unacademy',
+      'byjus',
+      'vedantu',
+      'school fee',
+      'college fee',
+      'tuition',
+      'books',
+      'stationery',
+      'course',
+      'certification',
+      'exam fee',
+      'coaching'
+    ])) return 'Education';
+    if (_m(text, [
+      'zerodha',
+      'groww',
+      'upstox',
+      'kuvera',
+      'mutual fund',
+      'sip',
+      'stock',
+      'shares',
+      'nps',
+      'ppf',
+      'fd ',
+      'fixed deposit',
+      'gold',
+      'equity'
+    ])) return 'Investment';
+    return 'Other';
+  }
+
+  static bool _m(String text, List<String> kw) =>
+      kw.any((k) => text.contains(k));
+}
