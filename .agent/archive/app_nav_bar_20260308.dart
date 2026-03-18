@@ -1,3 +1,4 @@
+// Archived: Removed app_nav_bar.dart to use AppDrawer — 2026-03-08
 import 'package:flutter/material.dart';
 
 class AppNavBar extends StatelessWidget {

@@ -10,22 +10,23 @@ import '../../export/widgets/export_options_sheet.dart';
 import '../../../core/di/injection.dart';
 import '../../../../core/widgets/empty_state.dart';
 
+import '../../../core/widgets/fintrack_top_bar.dart';
+
 class HistoryPage extends StatelessWidget {
-  const HistoryPage({super.key});
+  final VoidCallback onMenuTap;
+  const HistoryPage({super.key, required this.onMenuTap});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expense History',
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.upload),
-            onPressed: () => _showExportSheet(context),
-            tooltip: 'Export Statement',
-          ),
-        ],
+      appBar: FinTrackTopBar(
+        title: 'Expense History',
+        onMenuTap: onMenuTap,
+        action: IconButton(
+          icon: const Icon(Icons.upload),
+          onPressed: () => _showExportSheet(context),
+          tooltip: 'Export Statement',
+        ),
       ),
       body: BlocBuilder<HistoryBloc, HistoryState>(
         builder: (context, state) {

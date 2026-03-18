@@ -16,7 +16,7 @@ FinTrack Pro employs a Clean Architecture structure coupled with standard featur
 - `ProfileBloc`: Manages theme handling, bio-metrics, and premium checks.
 
 ## Navigation
-Driven by `go_router` located in `app.dart`. Key routes include `/dashboard`, `/chat`, `/history`, `/profile`, `/onboarding`, and `/premium`.
+Driven by `go_router` located in `app_router.dart`. Includes a `MainShell` stack acting as the core app layout. No BottomNavigationBar is used; instead a gesture-invoked `AppDrawer` manages index state between `ChatPage`, `DashboardPage`, `HistoryPage`, and `AchievementsPage`.
 
 ## Data Flow
 User Input (Chat) -> NLP Parser (Local Gemma/Groq) -> ChatBloc -> AppDatabase (Drift) -> Emit to DashboardBloc -> UI Update (AnimatedAmount) -> Background Sync via Workmanager to Supabase.

@@ -7,13 +7,8 @@ import '../../features/auth/pages/login_page.dart';
 import '../../features/auth/pages/signup_page.dart';
 import '../../features/auth/pages/forgot_password_page.dart';
 import '../../features/profile_setup/pages/profile_setup_page.dart';
-import '../../features/chat/pages/chat_page.dart';
-import '../../features/dashboard/pages/dashboard_page.dart';
-import '../../features/history/pages/history_page.dart';
-import '../../features/recurring/pages/recurring_page.dart';
-import '../../features/achievements/pages/achievements_page.dart';
-import '../../features/profile/pages/profile_page.dart';
-import '../../features/navigation/pages/main_shell.dart';
+
+import '../../features/shell/main_shell.dart';
 import '../../services/onboarding_service.dart';
 import '../../features/import/pages/sms_import_page.dart';
 import '../../features/import/pages/import_history_page.dart';
@@ -23,7 +18,7 @@ class AppRouter {
 
   static final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/main/chat',
+    initialLocation: '/main',
     observers: [SentryNavigatorObserver()],
     redirect: (context, state) async {
       final onboardingDone = await OnboardingService.isComplete();
@@ -41,7 +36,7 @@ class AppRouter {
       }
 
       if (session != null && isAuthRoute) {
-        return '/main/chat';
+        return '/main';
       }
 
       return null;
@@ -75,60 +70,9 @@ class AppRouter {
         path: '/import-history',
         builder: (context, state) => const ImportHistoryPage(),
       ),
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return MainShell(navigationShell: navigationShell);
-        },
-        branches: [
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/main/chat',
-                builder: (context, state) => const ChatPage(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/main/dashboard',
-                builder: (context, state) => const DashboardPage(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/main/history',
-                builder: (context, state) => const HistoryPage(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/main/recurring',
-                builder: (context, state) => const RecurringPage(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/main/awards',
-                builder: (context, state) => const AchievementsPage(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/main/profile',
-                builder: (context, state) => const ProfilePage(),
-              ),
-            ],
-          ),
-        ],
+      GoRoute(
+        path: '/main',
+        builder: (context, state) => const MainShell(),
       ),
     ],
   );

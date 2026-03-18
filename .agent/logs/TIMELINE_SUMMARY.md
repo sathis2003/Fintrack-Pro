@@ -1,3 +1,5 @@
+- [2026-03-17] Fixed git push issue and removed exposed Groq API key from supabase edge functions.
+- [2026-03-09] Overhauled main navigation to use AppDrawer (Design v3) and established ChatPage as default landing screen.
 - [2026-03-08] Fixed Android release build failure by adding ProGuard keep rules for Google Play Core.
 - [2026-03-08] Fixed border rendering assertion in ChatPage empty state widget.
 - [2026-03-08] Implemented Conversational AI capabilities, adding intent classification, context building, and database schema updates for monthly income.

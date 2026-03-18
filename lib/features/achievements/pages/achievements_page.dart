@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/achievement_definitions.dart';
 
+import '../../../core/widgets/fintrack_top_bar.dart';
+
 class AchievementsPage extends StatelessWidget {
-  const AchievementsPage({super.key});
+  final VoidCallback onMenuTap;
+  const AchievementsPage({super.key, required this.onMenuTap});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Achievements',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+      appBar: FinTrackTopBar(
+        title: 'Achievements',
+        onMenuTap: onMenuTap,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

@@ -8,6 +8,7 @@
 | Natural Language Expenses | ✅ Done | ChatBloc | ChatPage | Local Gemma or Groq fallback |
 | Design System v2 | ✅ Done | ThemeNotifier | All | CRED/Groww inspired gradients, Lottie states |
 | Categorized Dashboard | ✅ Done | DashboardBloc | DashboardPage | FlChart integration, Animated Counters |
+| Design v3 AI Chat & Nav | ✅ Done | ChatBloc | ChatPage, MainShell | Chat-first index 0, drawer nav |
 
 ## Planned Features
 | Feature | Priority | Notes |

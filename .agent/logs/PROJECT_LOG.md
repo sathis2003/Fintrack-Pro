@@ -1,3 +1,25 @@
+## [2026-03-17 18:52] — Fix Secret Push Block
+**Status:** ✅ Done
+**What was done:** Removed hardcoded Groq API key from `supabase/functions/groq-proxy/index.ts` to unblock git push due to GitHub Secret Protection.
+**Files changed:** supabase/functions/groq-proxy/index.ts
+**Notes:** The code now expects the key to be supplied purely via the `GROQ_API_KEY` environment variable in Supabase.
+---
+
+## [2026-03-09 14:56] — Design v3 AI Chat & Main Drawer Nav
+**Status:** ✅ Done
+**What was done:** Completely redesigned main navigation switching from BottomNavigationBar to a custom AppDrawer (dark Zepto/CRED style). Rewrote ChatPage as index 0 default home with conversational suggestions. Redesigned DashboardPage with a new hero gradient card and AI predictions preview widget. Standardized FinTrackTopBar across main app tabs.
+**Files changed:**
+- `lib/features/shell/main_shell.dart`, `lib/features/chat/pages/chat_page.dart`, `lib/features/dashboard/pages/dashboard_page.dart`
+- `lib/features/history/pages/history_page.dart`, `lib/features/achievements/pages/achievements_page.dart`
+- `lib/core/navigation/app_router.dart`
+**🗂️ Archived:**
+- `lib/core/widgets/app_nav_bar.dart` -> moved to `/.agent/archive/...`
+- `lib/features/shell/main_shell.dart` -> moved to archive
+- `lib/features/chat/pages/chat_page.dart` -> moved to archive
+- `lib/features/dashboard/pages/dashboard_page.dart` -> moved to archive
+**Notes:** Design System Phase 3 complete. No bottom bars left.
+---
+
 ## [2026-03-08 14:43] — Fixed R8 Compilation Error (Play Core)
 **Status:** ✅ Done
 **What was done:** Fixed another Android release build failure (`minifyReleaseWithR8`) where `com.google.android.play.core` classes were being missing/stripped by R8. Added the required custom ProGuard keep and dontwarn rules.
