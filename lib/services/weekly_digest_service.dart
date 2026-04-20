@@ -1,7 +1,9 @@
 import 'package:workmanager/workmanager.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../core/di/injection.dart';
+import '../core/constants/app_constants.dart';
 import '../data/local/database/app_database.dart';
 import 'notification_service.dart';
 import 'gemma_model_service.dart';
@@ -37,9 +39,10 @@ void callbackDispatcher() {
       // Re-init dependencies (new isolate)
       // Note: In a real app, these should be handled via environment variables carefully
       try {
+        await dotenv.load(fileName: '.env');
         await Supabase.initialize(
-          url: const String.fromEnvironment('SUPABASE_URL'),
-          anonKey: const String.fromEnvironment('SUPABASE_ANON_KEY'),
+          url: AppConstants.supabaseUrl,
+          anonKey: AppConstants.supabaseAnonKey,
         );
         await configureDependencies();
 

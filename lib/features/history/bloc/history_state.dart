@@ -16,10 +16,11 @@ class HistoryFilter extends Equatable {
     DateTime? month,
     String? category,
     String? searchQuery,
+    bool clearCategory = false,
   }) {
     return HistoryFilter(
       month: month ?? this.month,
-      category: category ?? this.category,
+      category: clearCategory ? null : (category ?? this.category),
       searchQuery: searchQuery ?? this.searchQuery,
     );
   }

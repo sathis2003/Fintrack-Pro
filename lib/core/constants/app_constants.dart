@@ -1,10 +1,11 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class AppConstants {
   AppConstants._();
 
-  // Supabase
-  static const supabaseUrl = 'https://zbeeapuorkwkefypremw.supabase.co';
-  static const supabaseAnonKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiZWVhcHVvcmt3a2VmeXByZW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0NjYzODQsImV4cCI6MjA4ODA0MjM4NH0.-j_2a3yylei3O2W9dYfItsLdJAOqV8iyezYSSu4QY4w';
+  // Supabase — loaded from .env file at runtime
+  static String get supabaseUrl => dotenv.env['SUPABASE_URL'] ?? '';
+  static String get supabaseAnonKey => dotenv.env['SUPABASE_ANON_KEY'] ?? '';
 
   // Edge Function URL
   static String get groqProxyUrl => '$supabaseUrl/functions/v1/groq-proxy';

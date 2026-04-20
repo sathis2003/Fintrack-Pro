@@ -38,7 +38,7 @@ class InsightsRepositoryImpl implements IInsightsRepository {
   }) async {
     try {
       // 1. Prepare request for Groq Proxy Edge Function
-      const url = '${AppConstants.supabaseUrl}/functions/v1/groq-proxy';
+      final url = '${AppConstants.supabaseUrl}/functions/v1/groq-proxy';
 
       final response = await _dio.post(
         url,

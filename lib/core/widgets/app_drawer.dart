@@ -175,12 +175,15 @@ class _NavList extends StatelessWidget {
 
   static const _items = [
     _DrawerItem(
-        emoji: '💬',
+        imagePath: 'assets/images/chat_ai_pro.png',
         label: 'AI Chat',
         sub: 'Log expenses, ask anything',
         badge: ''),
     _DrawerItem(
-        emoji: '📊', label: 'Dashboard', sub: 'Your money overview', badge: ''),
+        imagePath: 'assets/images/analytics_pro.png',
+        label: 'Dashboard',
+        sub: 'Your money overview',
+        badge: ''),
     _DrawerItem(
         emoji: '🕐', label: 'History', sub: 'All transactions', badge: ''),
     _DrawerItem(
@@ -218,12 +221,15 @@ class _NavList extends StatelessWidget {
 }
 
 class _DrawerItem {
-  final String emoji, label, sub, badge;
-  const _DrawerItem(
-      {required this.emoji,
-      required this.label,
-      required this.sub,
-      required this.badge});
+  final String? emoji, imagePath;
+  final String label, sub, badge;
+  const _DrawerItem({
+    this.emoji,
+    this.imagePath,
+    required this.label,
+    required this.sub,
+    required this.badge,
+  });
 }
 
 class _DrawerTile extends StatelessWidget {
@@ -260,8 +266,13 @@ class _DrawerTile extends StatelessWidget {
                   color: isActive ? null : Colors.white.withValues(alpha: 0.06),
                   borderRadius: BorderRadius.circular(12)),
               child: Center(
-                  child:
-                      Text(item.emoji, style: const TextStyle(fontSize: 18)))),
+                  child: item.imagePath != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(item.imagePath!,
+                              width: 24, height: 24, fit: BoxFit.contain))
+                      : Text(item.emoji ?? '',
+                          style: const TextStyle(fontSize: 18)))),
           const SizedBox(width: 12),
           // Text
           Expanded(

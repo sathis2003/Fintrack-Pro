@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/fintrack_top_bar.dart';
 import '../../../core/widgets/hero_card.dart';
+import 'package:intl/intl.dart';
 import '../bloc/dashboard_bloc.dart';
 import '../bloc/dashboard_event.dart';
 import '../bloc/dashboard_state.dart';
@@ -149,25 +150,35 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ),
                         const Divider(height: 1, color: AppColors.border),
-                        const _ExpenseRow(
-                            emoji: '☕',
-                            name: 'Starbucks',
-                            date: 'Today, 9:41 AM',
-                            amount: 340),
-                        const Divider(
-                            height: 1, color: AppColors.border, indent: 56),
-                        const _ExpenseRow(
-                            emoji: '🛒',
-                            name: 'Amazon',
-                            date: 'Yesterday',
-                            amount: 1299),
-                        const Divider(
-                            height: 1, color: AppColors.border, indent: 56),
-                        const _ExpenseRow(
-                            emoji: '🚕',
-                            name: 'Uber',
-                            date: '2 days ago',
-                            amount: 450),
+                        if (state.summary.expenses.isEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Center(
+                              child: Text('No expenses yet this month',
+                                  style: GoogleFonts.inter(
+                                      fontSize: 12, color: AppColors.ink3)),
+                            ),
+                          )
+                        else
+                          ...state.summary.expenses.reversed
+                              .take(5)
+                              .map((expense) => Column(
+                                    children: [
+                                      _ExpenseRow(
+                                          emoji: _getCategoryEmoji(
+                                              expense.category),
+                                          name: expense.description.isEmpty
+                                              ? expense.category
+                                              : expense.description,
+                                          date: DateFormat('MMM dd, h:mm a')
+                                              .format(expense.date),
+                                          amount: expense.amount),
+                                      const Divider(
+                                          height: 1,
+                                          color: AppColors.border,
+                                          indent: 56),
+                                    ],
+                                  )),
                         const SizedBox(height: 4),
                       ],
                     ),
@@ -181,6 +192,20 @@ class _DashboardPageState extends State<DashboardPage> {
         },
       ),
     );
+  }
+
+  String _getCategoryEmoji(String category) {
+    return switch (category.toLowerCase()) {
+      'food' => '🍔',
+      'transport' => '🚕',
+      'shopping' => '🛒',
+      'bills' => '⚡',
+      'health' => '🏥',
+      'entertainment' => '🎬',
+      'education' => '📚',
+      'investment' => '📈',
+      _ => '💰',
+    };
   }
 }
 
@@ -249,12 +274,7 @@ class _PredictCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(20),
-        border: const Border(
-          top: BorderSide(color: Colors.transparent, width: 0),
-          left: BorderSide(color: AppColors.border),
-          right: BorderSide(color: AppColors.border),
-          bottom: BorderSide(color: AppColors.border),
-        ),
+        border: Border.all(color: AppColors.border),
         boxShadow: const [
           BoxShadow(
               color: Color(0x0A0C0C14), blurRadius: 12, offset: Offset(0, 4))
@@ -279,8 +299,22 @@ class _PredictCard extends StatelessWidget {
             ),
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Container(
+                width: 44,
+                height: 44,
+                margin: const EdgeInsets.only(right: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.violet.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset('assets/images/analytics_pro.png',
+                      fit: BoxFit.contain),
+                ),
+              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

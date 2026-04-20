@@ -43,6 +43,10 @@ class AppRouter {
     },
     routes: [
       GoRoute(
+        path: '/',
+        redirect: (context, state) => '/main',
+      ),
+      GoRoute(
         path: '/onboarding',
         builder: (context, state) => const OnboardingPage(),
       ),

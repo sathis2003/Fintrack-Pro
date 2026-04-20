@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
           } else if (state is AuthNeedsProfileSetup) {
             context.go('/profile-setup');
           } else if (state is AuthAuthenticated) {
-            context.go('/main/chat');
+            context.go('/main');
           }
         },
         child: SafeArea(

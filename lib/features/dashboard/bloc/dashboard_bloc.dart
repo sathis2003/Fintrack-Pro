@@ -68,10 +68,10 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     if (isCurrentMonth) {
       summaryResult.fold((_) => null, (summary) {
         final predictionResult = PredictionEngine.predict(
-          currentMonthExpenses: [], // TODO: If needed, fetch raw list
-          lastMonthExpenses: [],
-          upcomingRecurring: [],
-          monthlyIncome: 0,
+          currentMonthExpenses: summary.expenses,
+          lastMonthExpenses: summary.previousMonthExpenses,
+          upcomingRecurring: [], // TODO: Fetch if recurring expenses are implemented
+          monthlyIncome: monthlyIncome ?? 0,
           now: DateTime.now(),
         );
         final forecast = predictionResult.projectedTotal;

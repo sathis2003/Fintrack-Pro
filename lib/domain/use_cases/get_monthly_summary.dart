@@ -56,6 +56,8 @@ class GetMonthlySummary {
         dailySpend: dailySpend,
         previousMonthTotal: prevTotal,
         changePercent: changePercent,
+        expenses: currentExpenses.where((e) => !e.isDeleted).toList(),
+        previousMonthExpenses: prevExpenses.where((e) => !e.isDeleted).toList(),
       ));
     } catch (e) {
       return Left(DatabaseFailure(e.toString()));

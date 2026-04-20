@@ -140,7 +140,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
         listener: (context, state) {
           if (state.isDone) {
             context.read<AuthBloc>().add(ProfileSetupCompleted());
-            context.go('/main/chat');
+            context.go('/main');
           }
         },
         builder: (context, state) {

@@ -53,7 +53,7 @@ class HistoryPage extends StatelessWidget {
                 Expanded(
                   child: state.expenses.isEmpty
                       ? const EmptyState(
-                          lottiePath: 'assets/lottie/empty_history.json',
+                          imagePath: 'assets/images/empty_history_pro.png',
                           title: 'No Expenses Yet',
                           subtitle:
                               'Your history will appear here once you start tracking',

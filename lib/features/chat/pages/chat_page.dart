@@ -8,6 +8,8 @@ import '../bloc/chat_state.dart';
 import '../models/chat_message.dart';
 
 import '../../../core/widgets/fintrack_top_bar.dart';
+import '../widgets/confirmation_card.dart';
+import '../widgets/typing_indicator.dart';
 
 class ChatPage extends StatefulWidget {
   final VoidCallback onMenuTap;
@@ -111,15 +113,15 @@ class _ChatPageState extends State<ChatPage> {
                       ),
                     ],
                     ...messages.map((m) => _MessageBubble(message: m)),
-                    if (state is ChatProcessing)
-                      const Padding(
-                        padding: EdgeInsets.only(left: 16, top: 8),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Typing...',
-                              style: TextStyle(
-                                  color: AppColors.ink3, fontSize: 12)),
-                        ),
+                    if (state is ChatProcessing) const TypingIndicator(),
+                    if (state is ChatAwaitingConfirmation)
+                      ConfirmationCard(
+                        expense: state.extracted,
+                        onConfirm: () => context
+                            .read<ChatBloc>()
+                            .add(ExpenseConfirmed(state.extracted)),
+                        onCancel: () =>
+                            context.read<ChatBloc>().add(ExpenseRejected()),
                       ),
                   ],
                 );
