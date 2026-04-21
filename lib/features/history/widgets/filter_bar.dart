@@ -80,8 +80,13 @@ class FilterBar extends StatelessWidget {
               ...AppCategories.list.map((c) => _CategoryChip(
                     label: c,
                     isSelected: filter.category == c,
-                    onSelected: () =>
-                        onFilterChanged(filter.copyWith(category: c)),
+                    onSelected: () {
+                      if (filter.category == c) {
+                        onFilterChanged(filter.copyWith(clearCategory: true));
+                      } else {
+                        onFilterChanged(filter.copyWith(category: c));
+                      }
+                    },
                   )),
             ],
           ),

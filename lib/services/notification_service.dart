@@ -7,16 +7,17 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
-    const android = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const ios = DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
-    );
-
-    await _plugin.initialize(
-      const InitializationSettings(android: android, iOS: ios),
-    );
+    // TEMPORARILY DISABLED: App crashing on startup due to invalid_icon on Android.
+    // const android = AndroidInitializationSettings('app_icon');
+    // const ios = DarwinInitializationSettings(
+    //   requestAlertPermission: true,
+    //   requestBadgePermission: true,
+    //   requestSoundPermission: true,
+    // );
+    //
+    // await _plugin.initialize(
+    //   const InitializationSettings(android: android, iOS: ios),
+    // );
   }
 
   Future<void> showBudgetWarning({

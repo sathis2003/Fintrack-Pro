@@ -1,3 +1,4 @@
+// Archived: Removed old main_shell.dart to use new Drawer MainShell — 2026-03-08
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/widgets/gemma_download_banner.dart';

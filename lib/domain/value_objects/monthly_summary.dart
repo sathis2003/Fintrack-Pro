@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import '../../domain/entities/expense.dart';
 
 class MonthlySummary extends Equatable {
   final double totalSpend;
@@ -6,6 +7,8 @@ class MonthlySummary extends Equatable {
   final Map<String, double> dailySpend; // "DD" → amount
   final double previousMonthTotal;
   final double changePercent; // positive = more spent than last month
+  final List<Expense> expenses;
+  final List<Expense> previousMonthExpenses;
 
   const MonthlySummary({
     required this.totalSpend,
@@ -13,6 +16,8 @@ class MonthlySummary extends Equatable {
     required this.dailySpend,
     required this.previousMonthTotal,
     required this.changePercent,
+    required this.expenses,
+    required this.previousMonthExpenses,
   });
 
   @override
@@ -22,5 +27,7 @@ class MonthlySummary extends Equatable {
         dailySpend,
         previousMonthTotal,
         changePercent,
+        expenses,
+        previousMonthExpenses,
       ];
 }

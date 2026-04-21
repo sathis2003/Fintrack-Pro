@@ -1,3 +1,16 @@
+- [2026-03-24] Prepared project for Envato submission (Docs, Secrets, Env configs, Changelog).
+- [2026-03-23] Implemented History filter toggle and integrated premium AI icons across the app.
+- [2026-03-23] Fixed chat response issue by adding confirmation card UI
+- [2026-03-23] Implemented dynamic data for Dashboard (Recent Expenses & Predictions)
+- [2026-03-23] Fixed Dashboard rendering assertion error (Border/Radius incompatibility).
+- [2026-03-23] Fixed GoRouter startup crash caused by missing root route (`/`).
+- [2026-03-23] Temporarily disabled local notification initialization to bypass a persistent `invalid_icon` startup crash.
+- [2026-03-23] Fixed app startup crash (`PlatformException`) by adding a dedicated `app_icon` drawable for notifications.
+- [2026-03-20] Fixed white screen on launch — FlutterGemma.initialize() was blocking app startup silently; isolated it and added fallback error UI.
+- [2026-03-19] Commented out SMS reading permissions to bypass Google Play Protect warnings on installation.
+- [2026-03-17] Fixed git push issue and removed exposed Groq API key from supabase edge functions.
+- [2026-03-17] Fixed GitHub Push Protection by removing a hardcoded Groq API key from Supabase proxy edge functions and rewriting local Git history.
+- [2026-03-09] Overhauled main navigation to use AppDrawer (Design v3) and established ChatPage as default landing screen.
 - [2026-03-08] Fixed Android release build failure by adding ProGuard keep rules for Google Play Core.
 - [2026-03-08] Fixed border rendering assertion in ChatPage empty state widget.
 - [2026-03-08] Implemented Conversational AI capabilities, adding intent classification, context building, and database schema updates for monthly income.

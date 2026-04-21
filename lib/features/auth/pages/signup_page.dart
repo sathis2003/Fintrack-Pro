@@ -50,7 +50,7 @@ class _SignupPageState extends State<SignupPage> {
           } else if (state is AuthNeedsProfileSetup) {
             context.go('/profile-setup');
           } else if (state is AuthAuthenticated) {
-            context.go('/main/chat');
+            context.go('/main');
           }
         },
         child: SafeArea(

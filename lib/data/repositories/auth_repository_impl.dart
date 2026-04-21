@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../../core/errors/failures.dart';
 import '../../domain/repositories/i_auth_repository.dart';
 
@@ -50,7 +51,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   Future<Either<Failure, Unit>> signInWithGoogle() async {
     try {
       final googleSignIn = GoogleSignIn(
-        clientId: const String.fromEnvironment('GOOGLE_CLIENT_ID'),
+        clientId: dotenv.env['GOOGLE_CLIENT_ID'] ?? '',
         scopes: ['email', 'profile'],
       );
       final googleUser = await googleSignIn.signIn();
